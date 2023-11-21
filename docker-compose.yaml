@@ -1,0 +1,18 @@
+version: '1.0.0'
+services:
+  web:
+    build: .
+    ports:
+      - 8080:8080
+    links:
+      - "mysql:mysql.local"
+    volumes:
+      - ./data/web/:/home/site/
+      - /home/site/vendor
+  mysql:
+    image: mysql:8.2
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+      - MYSQL_DATABASE=lsky
+    volumes:
+      - ./data/mysql:/var/lib/mysql
