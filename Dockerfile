@@ -11,7 +11,7 @@ RUN apk add --no-cache --update nginx git php81 php81-fpm php81-pdo php81-pdo_my
   php81-pdo_sqlite php81-bcmath php81-ctype php81-dom php81-fileinfo php81-json \
   php81-mbstring php81-openssl php81-tokenizer php81-xml php81-pecl-imagick \
   composer php81-simplexml php81-session php81-ftp php81-xmlreader \ 
-  php81-xmlwriter php81-simplexml 
+  php81-xmlwriter php81-simplexml php81-mysqli
 
 ADD ./nginx/vhost.conf /etc/nginx/http.d/
 ADD ./nginx/php-fpm.conf /etc/php81/php-fpm.d/www.conf.99.conf
@@ -19,9 +19,11 @@ ADD ./entrypoint.sh /docker/entrypoint.sh
 
 WORKDIR /home/site
 # 这里也可以直接 ADD 文件进去
-RUN git clone https://github.com/lsky-org/lsky-pro.git /home/site
+# RUN git clone https://github.com/lsky-org/lsky-pro.git /home/site
+# ADD ./data/wordpress /home/site/
 
-RUN composer install -vvv
-RUN chown -R nginx:nginx /home/site && chmod -R 755 /home/site/storage
+# RUN composer install -vvv
+RUN chown -R nginx:nginx /home/site
+# RUN chmod -R 755 /home/site/storage
 
 ENTRYPOINT [ "sh", "/docker/entrypoint.sh" ]

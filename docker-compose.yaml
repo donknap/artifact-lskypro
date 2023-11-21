@@ -7,12 +7,17 @@ services:
     links:
       - "mysql:mysql.local"
     volumes:
-      - ./data/web/:/home/site/
-      - /home/site/vendor
+      - ./data/wordpress/:/home/site/
   mysql:
     image: mysql:8.2
     environment:
       - MYSQL_ROOT_PASSWORD=123456
-      - MYSQL_DATABASE=lsky
+      - MYSQL_DATABASE=wp
     volumes:
       - ./data/mysql:/var/lib/mysql
+  phpmyadmin:
+    image: phpmyadmin
+    ports:
+      - 8081:80
+    environment:
+      - PMA_HOST=mysql
