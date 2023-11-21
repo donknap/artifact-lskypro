@@ -1,0 +1,5 @@
+<button <?php echo e($attributes->merge(['type' => 'submit', 'class' => 'inline-flex justify-center py-2 px-4 text-sm font-medium rounded-md text-gray-600 bg-black/10 hover:bg-black/20 hover:text-gray-700'])); ?>>
+    <?php echo e($slot); ?>
+
+</button>
+<?php /**PATH /home/site/resources/views/components/button.blade.php ENDPATH**/ ?>
