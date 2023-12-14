@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM alpine:3.18
 
 # 1. 安装 php，php-fpm，nginx, git, 系统运行的一些依赖
 # 2. 写入一个 nginx 的 vhost 配置
